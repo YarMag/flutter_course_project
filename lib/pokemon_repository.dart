@@ -1,3 +1,4 @@
+/*
 class Pokemon {
   // some implementation will be there
 }
@@ -97,4 +98,4 @@ class SecurePokemonRepository implements IPokemonRepository {
       return _repo.findPokemonsByCategory(cat);
     }
   }
-}
+}*/
