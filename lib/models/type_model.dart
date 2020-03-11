@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
+
 class TypeModel {
   final int id;
   final String name;
 
-  TypeModel(this.id, this.name);
+  TypeModel({@required this.id, @required this.name});
 }

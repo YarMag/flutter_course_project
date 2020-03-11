@@ -1,4 +1,4 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:start_app/models/shape_model.dart';
 
 class SpeciesModel {
@@ -9,5 +9,11 @@ class SpeciesModel {
   final String colorId;
   final ShapeModel shape;
 
-  SpeciesModel({this.id, this.name, this.genderRate, this.captureRate, this.colorId, this.shape});
+  SpeciesModel(
+      {@required this.id,
+      @required this.name,
+      @required this.genderRate,
+      @required this.captureRate,
+      @required this.colorId,
+      @required this.shape});
 }
