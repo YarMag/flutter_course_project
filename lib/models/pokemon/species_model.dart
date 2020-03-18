@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:start_app/models/shape_model.dart';
+import 'package:start_app/models/pokemon/shape_model.dart';
 
 class SpeciesModel {
   final int id;

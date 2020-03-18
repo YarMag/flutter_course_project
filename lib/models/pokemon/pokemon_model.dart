@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:start_app/models/species_model.dart';
-import 'package:start_app/models/type_model.dart';
+import 'package:start_app/models/pokemon/species_model.dart';
+import 'package:start_app/models/pokemon/type_model.dart';
 
 class PokemonModel {
   final int id;

@@ -1,48 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:start_app/business_logic/blocs/common/base_bloc_context.dart';
 
 import 'base_bloc.dart';
 
 // Generic BLoC provider
-class BlocProvider<T extends BlocBase> extends StatefulWidget {
-  BlocProvider(
-      {@required this.child,
-      @required this.bloc,
-      @required this.blocContext,
-      Key key})
-      : super(key: key);
+class BlocProvider<T extends BlocBase>extends StatefulWidget {
+  BlocProvider({
+    Key key,
+    @required this.child,
+    @required this.bloc,
+  }): super(key: key);
 
   final T bloc;
   final Widget child;
-  final BlocContextBase<T> blocContext;
 
   @override
-  _BlocProviderState<T> createState() => _BlocProviderState<T>();
+  _BlocProviderState<T>createState() => _BlocProviderState<T>();
 
-  static T of<T extends BlocBase>(BuildContext context) {
-    final Type type = _typeOf<BlocProvider<T>>();
-    final BlocProvider<T> provider = context.ancestorWidgetOfExactType(type);
+  static T of<T extends BlocBase>(BuildContext context){
+    final type = _typeOf<BlocProvider<T>>();
+    BlocProvider<T> provider = context.ancestorWidgetOfExactType(type);
     return provider.bloc;
   }
 
   static Type _typeOf<T>() => T;
 }
 
-class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {
+class _BlocProviderState<T> extends State<BlocProvider<BlocBase>>{
   @override
-  void initState() {
-    super.initState();
-    widget.blocContext.subscribe(widget.bloc, context);
-  }
-
-  @override
-  void dispose() {
+  void dispose(){
     widget.bloc.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return widget.child;
   }
 }
