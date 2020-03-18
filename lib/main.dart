@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:start_app/business_logic/di/application_assembly.dart';
+import 'package:start_app/business_logic/di/injector_assembly.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Injection.initialize();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

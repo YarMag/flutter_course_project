@@ -20,7 +20,7 @@ class ApplicationAssembly {
   }
 
   static StatefulWidget getDICompositionRoot() {
-    return (Injection.injector.get<MainScreenBuilder>())();
+    return (Injection.injector.get<MainScreenBuilder>(key: "mainScreen"))();
   }
 
   //#region Services
