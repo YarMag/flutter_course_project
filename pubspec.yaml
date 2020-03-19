@@ -41,9 +41,20 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+  - assets/pokemon_sprites/bulbasaur.png
+  - assets/pokemon_sprites/charmander.png
+  - assets/pokemon_sprites/squirtle.png
+  - assets/pokemon_sprites/pickachu.png
+  - assets/pokemon_sprites/geodude.png
+  - assets/pokemon_sprites/gyarados.png
+  - assets/pokemon_sprites/psyduck.png
+  - assets/pokemon_sprites/sandslash.png
+  - assets/pokemon_sprites/mewto.png
+  - assets/pokemon_sprites/onix.png
+  - assets/pokemon_sprites/haunter.png
+  - assets/pokemon_sprites/kadabra.png
+  - assets/pokemon_sprites/starmie.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
