@@ -11,42 +11,62 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: SingleChildScrollView(
+        primary: false,
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _wrappedImage(Images.bulbasaur()),
-              _wrappedImage(Images.pickachu())
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _wrappedImage(Images.pokemonLogo(), width: 340, height: 180)
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _wrappedImage(Images.bulbasaur()),
+                  _wrappedImage(Images.pickachu())
+                ],
+              ),
+              CupertinoButton(
+                child: Text("New fight"),
+                onPressed: () => Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (BuildContext context) =>
+                            _newFightScreenBuilder())),
+              ),
+              CupertinoButton(
+                child: Text("Pokedex"),
+                onPressed: () => print("Not implemented yet"),
+              ),
+              CupertinoButton(
+                child: Text("Settings"),
+                onPressed: () => print("Not implemented yet"),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _wrappedImage(Images.charmander()),
+                  _wrappedImage(Images.squirtle())
+                ],
+              ),
             ],
           ),
-          CupertinoButton(
-            child: Text("New fight"),
-            onPressed: () => Navigator.push(
-                context,
-                CupertinoPageRoute(
-                    builder: (BuildContext context) =>
-                        _newFightScreenBuilder())),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _wrappedImage(Images.charmander()),
-              _wrappedImage(Images.squirtle())
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
-  
-  Widget _wrappedImage(Image img) => Container(
-    width: 150,
-    height: 150,
-    child: FittedBox(
-      child: img,
-      fit: BoxFit.fill,
-    ),
-  );
+
+  Widget _wrappedImage(Image img, {double width = 180, double height = 180}) =>
+      Container(
+        width: width,
+        height: height,
+        child: FittedBox(
+          child: img,
+          fit: BoxFit.fill,
+        ),
+      );
 }

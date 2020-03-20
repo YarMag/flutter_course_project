@@ -13,8 +13,8 @@ class PokemonModel {
   PokemonModel(
       {@required this.id,
       @required this.name,
-      @required this.height,
-      @required this.weight,
-      @required this.species,
-      @required this.types});
+      this.height,
+      this.weight,
+      this.species,
+      this.types});
 }

@@ -55,6 +55,7 @@ flutter:
   - assets/pokemon_sprites/haunter.png
   - assets/pokemon_sprites/kadabra.png
   - assets/pokemon_sprites/starmie.png
+  - assets/pokemon_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
