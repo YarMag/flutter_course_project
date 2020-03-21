@@ -49,7 +49,7 @@ class NewFightBloc extends INewFightBloc {
     _settings.difficulty = newDifficulty;
   }
 
-  void updateActiveParticipantPokemon(PokemonModel pokemon) {
+  void updateSelectedPokemon(PokemonModel pokemon) {
     switch (_activeParticipant) {
       case NewFightPlayerType.player:
         _settings.playerPokemon = pokemon;

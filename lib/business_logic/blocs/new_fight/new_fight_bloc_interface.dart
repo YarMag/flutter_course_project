@@ -19,7 +19,7 @@ abstract class INewFightBloc extends BlocBase {
 
   void updateDifficulty(Difficulty newDifficulty);
 
-  void updateActiveParticipantPokemon(PokemonModel pokemon);
+  void updateSelectedPokemon(PokemonModel pokemon);
 
   PokemonModel getActiveParticipantPokemon();
 

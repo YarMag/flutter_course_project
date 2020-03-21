@@ -29,7 +29,7 @@ class _PokemonGridCellState extends State<PokemonGridCell> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          _bloc.updateActiveParticipantPokemon(widget._pokemon);
+          _bloc.updateSelectedPokemon(widget._pokemon);
         });
       },
       child: Container(
