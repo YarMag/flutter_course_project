@@ -1,14 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:start_app/models/pokemon/pokemon_model.dart';
 
 enum Difficulty { easy, normal, hard }
 
 class FightSettingsModel {
-  int playerPokemonIndex;
-  int cpuPokemonIndex;
+  PokemonModel playerPokemon;
+  PokemonModel cpuPokemon;
   Difficulty difficulty;
 
-  FightSettingsModel(
-      {@required this.playerPokemonIndex,
-      @required this.cpuPokemonIndex,
-      @required this.difficulty});
+  FightSettingsModel({this.playerPokemon, this.cpuPokemon, this.difficulty});
 }

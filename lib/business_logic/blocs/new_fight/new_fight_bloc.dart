@@ -1,41 +1,78 @@
+import 'package:flutter/foundation.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
+import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 import 'package:start_app/models/fight_settings_model.dart';
 
 class NewFightBloc extends INewFightBloc {
-  List<PokemonModel> getPlayerPokemons() {
-    return [
-      PokemonModel(id: 1, name: "pickachu"),
-      PokemonModel(id: 2, name: "bulbasaur"),
-      PokemonModel(id: 3, name: "squirtle"),
-      PokemonModel(id: 4, name: "charmander")
-    ];
+  final IPokemonRepository _repository;
+  final FightSettingsModel _settings = FightSettingsModel();
+
+  NewFightParticipant _activeParticipant;
+
+  NewFightBloc({@required IPokemonRepository pokemonRepository})
+      : this._repository = pokemonRepository {
+    _settings.difficulty = Difficulty.normal;
+    _settings.playerPokemon = _getPlayerPokemons()[0];
+    _settings.cpuPokemon = _getCPUPokemons()[0];
+
+    _activeParticipant = NewFightParticipant.player;
   }
 
-  List<PokemonModel> getCPUPokemons() {
-    return [
-      PokemonModel(id: 5, name: "gyarados"),
-      PokemonModel(id: 6, name: "haunter"),
-      PokemonModel(id: 7, name: "kadabra"),
-      PokemonModel(id: 8, name: "mewto")
-    ];
+  void changeActiveParticipant(NewFightParticipant participant) {
+    _activeParticipant = participant;
+  }
+
+  List<PokemonModel> getPokemonsGridContent() {
+    switch (_activeParticipant) {
+      case NewFightParticipant.player:
+        return _getPlayerPokemons();
+      case NewFightParticipant.cpu:
+        return _getCPUPokemons();
+      default:
+        assert(false, "Should never reach there");
+        return null;
+    }
   }
 
   FightSettingsModel getFightSettings() {
-    return FightSettingsModel(
-        playerPokemonIndex: 0,
-        cpuPokemonIndex: 0,
-        difficulty: Difficulty.normal);
+    return _settings;
   }
 
-  void updateDifficulty(Difficulty newDifficulty) {}
+  void updateDifficulty(Difficulty newDifficulty) {
+    _settings.difficulty = newDifficulty;
+  }
 
-  void updatePlayerPokemon(PokemonModel pokemon) {}
+  void updateActiveParticipantPokemon(PokemonModel pokemon) {
+    switch (_activeParticipant) {
+      case NewFightParticipant.player:
+        _settings.playerPokemon = pokemon;
+        break;
+      case NewFightParticipant.cpu:
+        _settings.cpuPokemon = pokemon;
+        break;
+      default:
+        assert(false, "Should never reach there");
+        break;
+    }
+  }
 
-  void updateCPUPokemon(PokemonModel pokemon) {}
 
   void onStartFightButton() {}
 
   @override
   void dispose() {}
+
+  List<PokemonModel> _getPlayerPokemons() {
+    List<PokemonModel> allPokemons = _repository.getAllPokemons();
+    assert(allPokemons.length > 4);
+    return allPokemons.sublist(0, 4);
+  }
+
+  List<PokemonModel> _getCPUPokemons() {
+    List<PokemonModel> allPokemons = _repository.getAllPokemons();
+    assert(allPokemons.length > 4);
+    return allPokemons.sublist(allPokemons.length - 4, allPokemons.length);
+  }
+
 }

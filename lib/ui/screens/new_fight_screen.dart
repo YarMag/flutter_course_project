@@ -46,20 +46,25 @@ class _NewFightScreenState extends State<NewFightScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
-                  child: PokemonAvatar(Images.pickachu()),
+                  child: PokemonAvatar(Images.forPokemon(_bloc.getFightSettings().playerPokemon)),
+                  onTap: () {
+                    setState(() {
+                      _bloc.changeActiveParticipant(NewFightParticipant.player);
+                    });
+                  },
                 ),
                 DifficultySelectionControl(),
                 GestureDetector(
-                  child: PokemonAvatar(Images.mewto()),
+                  child: PokemonAvatar(Images.forPokemon(_bloc.getFightSettings().cpuPokemon)),
                   onTap: () {
                     setState(() {
-
+                      _bloc.changeActiveParticipant(NewFightParticipant.cpu);
                     });
                   },
                 )
               ],
             ),
-            PokemonsGrid(_bloc.getPlayerPokemons()),
+            PokemonsGrid(_bloc.getPokemonsGridContent()),
             CupertinoButton(
                 child: Text("Start fight"),
                 onPressed: () => Navigator.push(context,

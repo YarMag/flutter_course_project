@@ -8,11 +8,13 @@ import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/di/builders.dart';
 import 'package:start_app/business_logic/di/injector_assembly.dart';
+import 'package:start_app/business_logic/repositories/dummy_pokemon_repository.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
 import 'package:start_app/models/fight_settings_model.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
+import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
 
 class ApplicationAssembly {
   static StatefulWidget getCompositionRoot() {
@@ -25,11 +27,13 @@ class ApplicationAssembly {
 
   //#region Services
   static IFightServiceFactory _fightServiceFactory = FightServiceFactory();
+  static IPokemonRepository _pokemonRepository = DummyPokemonRepository();
   //#endregion
 
   //#region Blocs
   static IMainMenuBloc _mainMenuBloc() => MainMenuBloc();
-  static INewFightBloc _newFightBloc() => NewFightBloc();
+  static INewFightBloc _newFightBloc() =>
+      NewFightBloc(pokemonRepository: _pokemonRepository);
   static ISingleFightBloc _singleFightBloc(FightSettingsModel settings) =>
       SingleFightBloc(
           service: _fightServiceFactory.create(settings.difficulty),
