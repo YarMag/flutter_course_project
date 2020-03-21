@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
-import 'package:start_app/business_logic/blocs/fight_simulation/single_fight_bloc.dart';
-import 'package:start_app/business_logic/blocs/fight_simulation/single_fight_bloc_interface.dart';
+import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc.dart';
+import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';

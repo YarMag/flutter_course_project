@@ -1,7 +1,7 @@
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
-import 'package:start_app/business_logic/blocs/fight_simulation/single_fight_bloc.dart';
-import 'package:start_app/business_logic/blocs/fight_simulation/single_fight_bloc_interface.dart';
+import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc.dart';
+import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
@@ -27,7 +27,8 @@ class Injection {
 
     // blocs
     injector.map<IMainMenuBloc>((i) => MainMenuBloc());
-    injector.map<INewFightBloc>((i) => NewFightBloc(pokemonRepository: i.get<IPokemonRepository>()));
+    injector.map<INewFightBloc>(
+        (i) => NewFightBloc(pokemonRepository: i.get<IPokemonRepository>()));
     injector.mapWithParams<ISingleFightBloc>((i, dict) {
       final FightSettingsModel settings = dict["settings"];
       assert(settings != null, "Missed settings for SingleFightBloc creation");

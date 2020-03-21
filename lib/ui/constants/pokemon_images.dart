@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 
-class Images {
+class PokemonImages {
   static Image pokemonLogo() => Image.asset("assets/pokemon_logo.png");
 
   static Image bulbasaur() => Image.asset("assets/pokemon_sprites/bulbasaur.png");

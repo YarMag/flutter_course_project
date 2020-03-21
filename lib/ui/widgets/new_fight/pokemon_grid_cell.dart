@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-import 'package:start_app/ui/constants/images.dart';
+import 'package:start_app/ui/constants/pokemon_images.dart';
+import 'package:start_app/ui/constants/palette.dart';
 
 class PokemonGridCell extends StatefulWidget {
   final PokemonModel _pokemon;
@@ -28,18 +29,17 @@ class _PokemonGridCellState extends State<PokemonGridCell> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
           _bloc.updateSelectedPokemon(widget._pokemon);
-        });
       },
       child: Container(
         width: 100,
         height: 100,
         decoration: (_bloc.getActiveParticipantPokemon() == widget._pokemon)
-            ? BoxDecoration(border: Border.all(width: 1, color: Colors.yellow))
+            ? BoxDecoration(
+                border: Border.all(width: 1, color: Palette.secondarySelection))
             : null,
         child: FittedBox(
-          child: Images.forPokemon(widget._pokemon),
+          child: PokemonImages.forPokemon(widget._pokemon),
           fit: BoxFit.fill,
         ),
       ),

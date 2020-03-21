@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-import 'package:start_app/ui/constants/images.dart';
+import 'package:start_app/ui/constants/pokemon_images.dart';
+import 'package:start_app/ui/constants/palette.dart';
 
 class PlayerPokemonAvatar extends StatefulWidget {
   final PokemonModel _pokemon;
@@ -48,10 +49,10 @@ class _PlayerPokemonAvatarState extends State<PlayerPokemonAvatar> {
               height: 100,
               decoration: widget._playerType == _bloc.getActiveParticipant()
                   ? BoxDecoration(
-                      border: Border.all(color: Colors.green, width: 1))
+                      border: Border.all(color: Palette.primarySelection, width: 1))
                   : null,
               child: FittedBox(
-                child: Images.forPokemon(widget._pokemon),
+                child: PokemonImages.forPokemon(widget._pokemon),
                 fit: BoxFit.fill,
               ),
             ),

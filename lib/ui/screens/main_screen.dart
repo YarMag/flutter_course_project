@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:start_app/business_logic/di/builders.dart';
-import 'package:start_app/ui/constants/images.dart';
+import 'package:start_app/ui/constants/pokemon_images.dart';
 
 class MainScreen extends StatelessWidget {
   final NewFightScreenBuilder _newFightScreenBuilder;
@@ -20,14 +20,14 @@ class MainScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  _wrappedImage(Images.pokemonLogo(), width: 340, height: 180)
+                  _wrappedImage(PokemonImages.pokemonLogo(), width: 340, height: 180)
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  _wrappedImage(Images.bulbasaur()),
-                  _wrappedImage(Images.pickachu())
+                  _wrappedImage(PokemonImages.bulbasaur()),
+                  _wrappedImage(PokemonImages.pickachu())
                 ],
               ),
               CupertinoButton(
@@ -49,8 +49,8 @@ class MainScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  _wrappedImage(Images.charmander()),
-                  _wrappedImage(Images.squirtle())
+                  _wrappedImage(PokemonImages.charmander()),
+                  _wrappedImage(PokemonImages.squirtle())
                 ],
               ),
             ],

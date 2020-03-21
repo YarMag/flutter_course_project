@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:start_app/business_logic/blocs/fight_simulation/single_fight_bloc_interface.dart';
+import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_interface.dart';
 import 'package:start_app/models/pokemon/ability_model.dart';
 import 'package:start_app/models/fight_state_model.dart';
