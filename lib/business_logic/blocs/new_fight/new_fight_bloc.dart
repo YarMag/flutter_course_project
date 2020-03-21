@@ -8,7 +8,8 @@ class NewFightBloc extends INewFightBloc {
   final IPokemonRepository _repository;
   final FightSettingsModel _settings = FightSettingsModel();
 
-  NewFightParticipant _activeParticipant;
+  NewFightPlayerType _activeParticipant;
+  Function _onUpdateRequiredCallback;
 
   NewFightBloc({@required IPokemonRepository pokemonRepository})
       : this._repository = pokemonRepository {
@@ -16,18 +17,23 @@ class NewFightBloc extends INewFightBloc {
     _settings.playerPokemon = _getPlayerPokemons()[0];
     _settings.cpuPokemon = _getCPUPokemons()[0];
 
-    _activeParticipant = NewFightParticipant.player;
+    _activeParticipant = NewFightPlayerType.player;
   }
 
-  void changeActiveParticipant(NewFightParticipant participant) {
+  void changeActiveParticipant(NewFightPlayerType participant) {
     _activeParticipant = participant;
+    _onUpdateRequiredCallback();
+  }
+
+  NewFightPlayerType getActiveParticipant() {
+    return _activeParticipant;
   }
 
   List<PokemonModel> getPokemonsGridContent() {
     switch (_activeParticipant) {
-      case NewFightParticipant.player:
+      case NewFightPlayerType.player:
         return _getPlayerPokemons();
-      case NewFightParticipant.cpu:
+      case NewFightPlayerType.cpu:
         return _getCPUPokemons();
       default:
         assert(false, "Should never reach there");
@@ -45,20 +51,41 @@ class NewFightBloc extends INewFightBloc {
 
   void updateActiveParticipantPokemon(PokemonModel pokemon) {
     switch (_activeParticipant) {
-      case NewFightParticipant.player:
+      case NewFightPlayerType.player:
         _settings.playerPokemon = pokemon;
         break;
-      case NewFightParticipant.cpu:
+      case NewFightPlayerType.cpu:
         _settings.cpuPokemon = pokemon;
         break;
       default:
         assert(false, "Should never reach there");
         break;
     }
+    if (_onUpdateRequiredCallback != null) {
+      _onUpdateRequiredCallback();
+    }
   }
 
+  PokemonModel getActiveParticipantPokemon() {
+    switch (_activeParticipant) {
+      case NewFightPlayerType.player:
+        return _settings.playerPokemon;
+      case NewFightPlayerType.cpu:
+        return _settings.cpuPokemon;
+      default:
+        assert(false, "Should never reach there");
+        break;
+    }
+    return null;
+  }
 
-  void onStartFightButton() {}
+  void onStartFightButton() {
+
+  }
+
+  void setOnUpdateRequiredCallback(Function callback) {
+    _onUpdateRequiredCallback = callback;
+  }
 
   @override
   void dispose() {}

@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-import 'package:start_app/ui/constants/images.dart';
+import 'package:start_app/ui/widgets/new_fight/pokemon_grid_cell.dart';
 
 class PokemonsGrid extends StatefulWidget {
 
@@ -25,13 +25,8 @@ class _PokemonsGridState extends State<PokemonsGrid> {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 0.9),
           children:
           widget._pokemons.map((PokemonModel p) =>
-                Container(
-                  width: 100,
-                  height: 100,
-                  child: FittedBox(
-                    child: Images.forPokemon(p),
-                    fit: BoxFit.fill,
-                  ),
+                PokemonGridCell(
+                  pokemon: p,
                 ),
           ).toList(),
         ),

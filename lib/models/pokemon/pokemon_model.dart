@@ -17,4 +17,12 @@ class PokemonModel {
       this.weight,
       this.species,
       this.types});
+
+  @override
+  bool operator ==(other) {
+    return this.id == other.id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
