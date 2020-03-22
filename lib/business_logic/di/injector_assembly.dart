@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc.dart';
@@ -10,6 +12,9 @@ import 'package:start_app/business_logic/di/builders.dart';
 import 'package:start_app/business_logic/repositories/dummy_pokemon_repository.dart';
 import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
+import 'package:start_app/creational_patterns/abstract_factory/cupertino_widgets_factory.dart';
+import 'package:start_app/creational_patterns/abstract_factory/material_widgets_factory.dart';
+import 'package:start_app/creational_patterns/abstract_factory/widget_factory.dart';
 import 'package:start_app/models/fight_settings_model.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
@@ -19,6 +24,16 @@ class Injection {
   static final Injector injector = Injector.getInjector();
 
   static void initialize() {
+    if (Platform.isIOS) {
+      injector.map<WidgetFactory>((i) => CupertinoWidgetsFactory());
+    }
+    else if (Platform.isAndroid) {
+      injector.map<WidgetFactory>((i) => MaterialWidgetsFactory());
+    }
+    else {
+      assert(false, "Should never reach there");
+    }
+
     // services
     injector.map<IFightServiceFactory>((i) => FightServiceFactory(),
         isSingleton: true);
