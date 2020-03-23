@@ -16,6 +16,7 @@ import 'package:start_app/creational_patterns/abstract_factory/cupertino_widgets
 import 'package:start_app/creational_patterns/abstract_factory/material_widgets_factory.dart';
 import 'package:start_app/creational_patterns/abstract_factory/widget_factory.dart';
 import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/structural_patterns/adapter/network_service_interface.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
@@ -33,6 +34,8 @@ class Injection {
     else {
       assert(false, "Should never reach there");
     }
+
+    injector.map<INetworkService>((i) => DioNetworkService());
 
     // services
     injector.map<IFightServiceFactory>((i) => FightServiceFactory(),
