@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
+import 'package:start_app/business_logic/blocs/highscores/highscores_bloc.dart';
+import 'package:start_app/business_logic/blocs/highscores/highscores_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:start_app/business_logic/di/injector_assembly.dart';
 import 'package:start_app/business_logic/repositories/dummy_pokemon_repository.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
 import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/ui/screens/highscores_screen.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
@@ -38,6 +41,7 @@ class ApplicationAssembly {
       SingleFightBloc(
           service: _fightServiceFactory.create(settings.difficulty),
           settings: settings);
+  static IHighscoresBloc _highscoreBloc() => HighscoresBloc();
   //#endregion
 
   //#region ScreenBuilders
@@ -46,6 +50,7 @@ class ApplicationAssembly {
     return BlocProvider<IMainMenuBloc>(
       child: MainScreen(
         newFightScreenBuilder: _newFightScreenBuilder,
+        highscoresScreenBuilder: _highscoresScreenBuilder,
       ),
       bloc: _mainMenuBloc(),
     );
@@ -64,6 +69,13 @@ class ApplicationAssembly {
     return BlocProvider<ISingleFightBloc>(
       child: SingleFightScreen(),
       bloc: _singleFightBloc(settings),
+    );
+  };
+
+  static HighscoresScreenBuilder _highscoresScreenBuilder = () {
+    return BlocProvider<IHighscoresBloc>(
+      child: HighscoresScreen(),
+      bloc: _highscoreBloc(),
     );
   };
 

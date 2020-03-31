@@ -4,9 +4,12 @@ import 'package:start_app/ui/constants/pokemon_images.dart';
 
 class MainScreen extends StatelessWidget {
   final NewFightScreenBuilder _newFightScreenBuilder;
+  final HighscoresScreenBuilder _highscoresScreenBuilder;
 
-  MainScreen({@required newFightScreenBuilder})
-      : this._newFightScreenBuilder = newFightScreenBuilder;
+  MainScreen(
+      {@required newFightScreenBuilder, @required highscoresScreenBuilder})
+      : this._newFightScreenBuilder = newFightScreenBuilder,
+        this._highscoresScreenBuilder = highscoresScreenBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,8 @@ class MainScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  _wrappedImage(PokemonImages.pokemonLogo(), width: 340, height: 180)
+                  _wrappedImage(PokemonImages.pokemonLogo(),
+                      width: 340, height: 180)
                 ],
               ),
               Row(
@@ -41,6 +45,12 @@ class MainScreen extends StatelessWidget {
               CupertinoButton(
                 child: Text("Pokedex"),
                 onPressed: () => print("Not implemented yet"),
+              ),
+              CupertinoButton(
+                child: Text("Highscores"),
+                onPressed: () => Navigator.push(context, CupertinoPageRoute(
+                  builder: (BuildContext context) => _highscoresScreenBuilder()
+                )),
               ),
               CupertinoButton(
                 child: Text("Settings"),

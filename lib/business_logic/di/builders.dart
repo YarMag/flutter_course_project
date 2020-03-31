@@ -5,3 +5,5 @@ typedef MainScreenBuilder();
 typedef NewFightScreenBuilder();
 
 typedef SingleFightScreenBuilder(FightSettingsModel settings);
+
+typedef HighscoresScreenBuilder();
