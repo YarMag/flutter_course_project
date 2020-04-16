@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/highscores/highscores_bloc.dart';
 import 'package:start_app/business_logic/blocs/highscores/highscores_bloc_interface.dart';
+import 'package:start_app/business_logic/blocs/pokedex/pokedex_bloc.dart';
+import 'package:start_app/business_logic/blocs/pokedex/pokedex_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/single_fight/single_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc.dart';
@@ -16,6 +18,7 @@ import 'package:start_app/models/fight_settings_model.dart';
 import 'package:start_app/ui/screens/highscores_screen.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
+import 'package:start_app/ui/screens/pokedex_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
 import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
 
@@ -42,6 +45,7 @@ class ApplicationAssembly {
           service: _fightServiceFactory.create(settings.difficulty),
           settings: settings);
   static IHighscoresBloc _highscoreBloc() => HighscoresBloc();
+  static IPokedexBloc _pokedexBloc() => PokedexBloc(repository: _pokemonRepository);
   //#endregion
 
   //#region ScreenBuilders
@@ -51,6 +55,7 @@ class ApplicationAssembly {
       child: MainScreen(
         newFightScreenBuilder: _newFightScreenBuilder,
         highscoresScreenBuilder: _highscoresScreenBuilder,
+        pokedexScreenBuilder: _pokedexScreenBuilder,
       ),
       bloc: _mainMenuBloc(),
     );
@@ -76,6 +81,13 @@ class ApplicationAssembly {
     return BlocProvider<IHighscoresBloc>(
       child: HighscoresScreen(),
       bloc: _highscoreBloc(),
+    );
+  };
+
+  static PokedexScreenBuilder _pokedexScreenBuilder = () {
+    return BlocProvider<IPokedexBloc>(
+      child: PokedexScreen(),
+      bloc: _pokedexBloc()
     );
   };
 

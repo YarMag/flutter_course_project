@@ -5,11 +5,15 @@ import 'package:start_app/ui/constants/pokemon_images.dart';
 class MainScreen extends StatelessWidget {
   final NewFightScreenBuilder _newFightScreenBuilder;
   final HighscoresScreenBuilder _highscoresScreenBuilder;
+  final PokedexScreenBuilder _pokedexScreenBuilder;
 
   MainScreen(
-      {@required newFightScreenBuilder, @required highscoresScreenBuilder})
+      {@required newFightScreenBuilder,
+      @required highscoresScreenBuilder,
+      @required pokedexScreenBuilder})
       : this._newFightScreenBuilder = newFightScreenBuilder,
-        this._highscoresScreenBuilder = highscoresScreenBuilder;
+        this._highscoresScreenBuilder = highscoresScreenBuilder,
+        this._pokedexScreenBuilder = pokedexScreenBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,11 @@ class MainScreen extends StatelessWidget {
               ),
               CupertinoButton(
                 child: Text("Pokedex"),
-                onPressed: () => print("Not implemented yet"),
+                onPressed: () => Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (BuildContext context) =>
+                            _pokedexScreenBuilder())),
               ),
               CupertinoButton(
                 child: Text("Highscores"),
@@ -58,8 +66,7 @@ class MainScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _wrappedImage(PokemonImages.pokemonLogo(),
-            width: 340, height: 180)
+        _wrappedImage(PokemonImages.pokemonLogo(), width: 340, height: 180)
       ],
     );
   }
