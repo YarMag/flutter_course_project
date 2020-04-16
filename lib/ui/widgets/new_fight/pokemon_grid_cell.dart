@@ -29,15 +29,11 @@ class _PokemonGridCellState extends State<PokemonGridCell> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-          _bloc.updateSelectedPokemon(widget._pokemon);
+          _bloc.inSelectedPokemon.add(widget._pokemon);
       },
       child: Container(
         width: 100,
         height: 100,
-        decoration: (_bloc.getActiveParticipantPokemon() == widget._pokemon)
-            ? BoxDecoration(
-                border: Border.all(width: 1, color: Palette.secondarySelection))
-            : null,
         child: FittedBox(
           child: PokemonImages.forPokemon(widget._pokemon),
           fit: BoxFit.fill,
@@ -45,4 +41,5 @@ class _PokemonGridCellState extends State<PokemonGridCell> {
       ),
     );
   }
+
 }

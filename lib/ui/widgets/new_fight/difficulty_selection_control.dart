@@ -34,10 +34,8 @@ class _DifficultySelectionControlState
   Widget build(BuildContext context) {
     return CupertinoSegmentedControl(
       onValueChanged: (int index) {
-        setState(() {
-          _selectedIndex = index;
-          _bloc.updateDifficulty(Difficulty.values[index]);
-        });
+        _selectedIndex = index;
+        _bloc.inDifficulty.add(Difficulty.values[index]);
       },
       groupValue: _selectedIndex,
       children: difficultiesWidgets,

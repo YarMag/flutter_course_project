@@ -20,20 +20,8 @@ class MainScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _wrappedImage(PokemonImages.pokemonLogo(),
-                      width: 340, height: 180)
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _wrappedImage(PokemonImages.bulbasaur()),
-                  _wrappedImage(PokemonImages.pickachu())
-                ],
-              ),
+              _logo(),
+              _upperImages(),
               CupertinoButton(
                 child: Text("New fight"),
                 onPressed: () => Navigator.push(
@@ -48,25 +36,51 @@ class MainScreen extends StatelessWidget {
               ),
               CupertinoButton(
                 child: Text("Highscores"),
-                onPressed: () => Navigator.push(context, CupertinoPageRoute(
-                  builder: (BuildContext context) => _highscoresScreenBuilder()
-                )),
+                onPressed: () => Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (BuildContext context) =>
+                            _highscoresScreenBuilder())),
               ),
               CupertinoButton(
                 child: Text("Settings"),
                 onPressed: () => print("Not implemented yet"),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _wrappedImage(PokemonImages.charmander()),
-                  _wrappedImage(PokemonImages.squirtle())
-                ],
-              ),
+              _lowerImages(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _logo() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _wrappedImage(PokemonImages.pokemonLogo(),
+            width: 340, height: 180)
+      ],
+    );
+  }
+
+  Widget _upperImages() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        _wrappedImage(PokemonImages.bulbasaur()),
+        _wrappedImage(PokemonImages.pickachu())
+      ],
+    );
+  }
+
+  Widget _lowerImages() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        _wrappedImage(PokemonImages.charmander()),
+        _wrappedImage(PokemonImages.squirtle())
+      ],
     );
   }
 

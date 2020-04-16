@@ -1,4 +1,3 @@
-
 import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
 import 'package:start_app/models/generation_model.dart';
 

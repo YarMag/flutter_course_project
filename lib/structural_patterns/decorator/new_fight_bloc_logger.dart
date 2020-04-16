@@ -2,7 +2,7 @@
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/models/fight_settings_model.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-
+/*
 class NewFightBlocLogger implements INewFightBloc {
 
   INewFightBloc _decoratee;
@@ -40,10 +40,6 @@ class NewFightBlocLogger implements INewFightBloc {
     return _decoratee.getActiveParticipantPokemon();
   }
 
-  void setOnUpdateRequiredCallback(Function callback) {
-    _decoratee.setOnUpdateRequiredCallback(callback);
-  }
-
   void onStartFightButton() {
     _log("Start button was pressed");
     _decoratee.onStartFightButton();
@@ -58,3 +54,4 @@ class NewFightBlocLogger implements INewFightBloc {
     // call for system logger
   }
 }
+ */
