@@ -3,7 +3,7 @@ import 'package:start_app/business_logic/services/fight/easy_fight_service.dart'
 import 'package:start_app/business_logic/services/fight/fight_service_interface.dart';
 import 'package:start_app/business_logic/services/fight/hard_fight_service.dart';
 import 'package:start_app/business_logic/services/fight/normal_fight_service.dart';
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 
 abstract class IFightServiceFactory {
   IFightService create(Difficulty difficulty);

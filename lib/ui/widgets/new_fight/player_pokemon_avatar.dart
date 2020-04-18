@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 import 'package:start_app/ui/constants/pokemon_images.dart';
 import 'package:start_app/ui/constants/palette.dart';

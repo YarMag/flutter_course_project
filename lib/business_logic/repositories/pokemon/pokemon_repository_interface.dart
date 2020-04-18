@@ -1,7 +1,7 @@
-import 'package:start_app/models/generation_model.dart';
+import 'package:start_app/models/pokemon/generation_model.dart';
 
-import '../../models/pokemon/pokemon_model.dart';
-import '../../models/pokemon/type_model.dart';
+import '../../../models/pokemon/pokemon_model.dart';
+import '../../../models/pokemon/type_model.dart';
 
 abstract class IPokemonRepository {
   List<PokemonModel> getAllPokemons();

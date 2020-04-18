@@ -1,8 +1,8 @@
-import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
-import 'package:start_app/models/generation_model.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
+import 'package:start_app/models/pokemon/generation_model.dart';
 
-import '../../models/pokemon/pokemon_model.dart';
-import '../../models/pokemon/type_model.dart';
+import '../../../models/pokemon/pokemon_model.dart';
+import '../../../models/pokemon/type_model.dart';
 
 class DummyPokemonRepository implements IPokemonRepository {
   List<PokemonModel> getAllPokemons() {

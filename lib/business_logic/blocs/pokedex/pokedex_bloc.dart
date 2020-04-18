@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:start_app/business_logic/blocs/pokedex/pokedex_bloc_interface.dart';
-import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 
 class PokedexBloc extends IPokedexBloc {

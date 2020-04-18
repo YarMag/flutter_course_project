@@ -4,8 +4,8 @@ import 'package:clock/clock.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:start_app/business_logic/blocs/pokedex/pokedex_bloc.dart';
 import 'package:start_app/business_logic/blocs/pokedex/pokedex_bloc_interface.dart';
-import 'package:start_app/business_logic/repositories/dummy_pokemon_repository.dart';
-import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
+import 'package:start_app/business_logic/repositories/pokemon/dummy_pokemon_repository.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 import 'package:fake_async/fake_async.dart';
 

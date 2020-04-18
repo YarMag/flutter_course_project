@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
-import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 
 class NewFightBloc extends INewFightBloc {
 

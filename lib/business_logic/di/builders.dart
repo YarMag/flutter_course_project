@@ -1,4 +1,4 @@
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 
 typedef MainScreenBuilder();
 

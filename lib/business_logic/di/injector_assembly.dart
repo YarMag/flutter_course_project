@@ -9,13 +9,13 @@ import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc_interfac
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/di/builders.dart';
-import 'package:start_app/business_logic/repositories/dummy_pokemon_repository.dart';
-import 'package:start_app/business_logic/repositories/pokemon_repository_interface.dart';
+import 'package:start_app/business_logic/repositories/pokemon/dummy_pokemon_repository.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
 import 'package:start_app/creational_patterns/abstract_factory/cupertino_widgets_factory.dart';
 import 'package:start_app/creational_patterns/abstract_factory/material_widgets_factory.dart';
 import 'package:start_app/creational_patterns/abstract_factory/widget_factory.dart';
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 import 'package:start_app/structural_patterns/adapter/network_service_interface.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';

@@ -1,7 +1,7 @@
 
 import 'package:start_app/business_logic/blocs/common/base_bloc.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
-import 'package:start_app/models/fight_settings_model.dart';
+import 'package:start_app/models/fight/fight_settings_model.dart';
 
 enum NewFightPlayerType { player, cpu }
 
