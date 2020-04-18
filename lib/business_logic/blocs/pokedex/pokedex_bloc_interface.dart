@@ -1,5 +1,4 @@
 
-import 'package:rxdart/rxdart.dart';
 import 'package:start_app/business_logic/blocs/common/base_bloc.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 
