@@ -13,7 +13,7 @@ class PokemonFightModel implements IAbilityAffectable {
   final PokemonModel pokemon;
   double hp;
   double energy;
-
+  List<AbilityModel> abilities;
   PokemonFightModel(
       {@required this.pokemon, @required this.hp, @required this.energy});
 

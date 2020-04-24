@@ -20,8 +20,7 @@ void main() {
 
   group("Easy fight service tests", () {
       test("Init fight state", () {
-          IFightService easyFightService = EasyFightService();
-          easyFightService.createFightState(playerPokemon, cpuPokemon);
+          IFightService easyFightService = EasyFightService(playerPokemon, cpuPokemon);
           FightStateModel fightState = easyFightService.getFightState();
           expect(fightState != null, true);
           expect(fightState.firstPokemon.hp > fightState.secondPokemon.hp, true);
@@ -29,8 +28,7 @@ void main() {
       });
 
       test("Apply player's ability", () {
-          IFightService easyFightService = EasyFightService();
-          easyFightService.createFightState(playerPokemon, cpuPokemon);
+        IFightService easyFightService = EasyFightService(playerPokemon, cpuPokemon);
           FightStateModel fightState = easyFightService.getFightState();
 
           double enemyHpBeforeAttack = fightState.secondPokemon.hp;
@@ -44,8 +42,7 @@ void main() {
       });
 
       test("Apply cpu's ability", () {
-        IFightService easyFightService = EasyFightService();
-        easyFightService.createFightState(playerPokemon, cpuPokemon);
+        IFightService easyFightService = EasyFightService(playerPokemon, cpuPokemon);
         FightStateModel fightState = easyFightService.getFightState();
 
         double playerHpBeforeAttack = fightState.firstPokemon.hp;

@@ -51,8 +51,7 @@ class Injection {
       final FightSettingsModel settings = dict["settings"];
       assert(settings != null, "Missed settings for SingleFightBloc creation");
       return SingleFightBloc(
-          settings: settings,
-          service: i.get<IFightServiceFactory>().create(settings.difficulty));
+          service: i.get<IFightServiceFactory>().create(settings));
     });
 
     // screen builders

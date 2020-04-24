@@ -9,7 +9,7 @@ class EasyFightService implements IFightService {
 
   FightStateModel getFightState() => _fightState;
 
-  void createFightState(PokemonModel first, PokemonModel second) {
+  EasyFightService(PokemonModel first, PokemonModel second) {
     PokemonFightModel firstFightPokemon =
         PokemonFightModel(pokemon: first, hp: 100, energy: 100);
     PokemonFightModel secondFightPokemon =
@@ -50,5 +50,10 @@ class EasyFightService implements IFightService {
         assert(false, "Should never reach there");
     }
     _fightState.secondPokemon.didUseAbility(ability);
+  }
+
+  AbilityModel simulateCpuAbilitySelection() {
+    // TODO: implement simulateCpuAbilitySelection
+    return null;
   }
 }

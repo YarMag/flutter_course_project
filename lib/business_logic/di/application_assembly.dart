@@ -42,8 +42,7 @@ class ApplicationAssembly {
       NewFightBloc(pokemonRepository: _pokemonRepository);
   static ISingleFightBloc _singleFightBloc(FightSettingsModel settings) =>
       SingleFightBloc(
-          service: _fightServiceFactory.create(settings.difficulty),
-          settings: settings);
+          service: _fightServiceFactory.create(settings));
   static IHighscoresBloc _highscoreBloc() => HighscoresBloc();
   static IPokedexBloc _pokedexBloc() => PokedexBloc(repository: _pokemonRepository);
   //#endregion

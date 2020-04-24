@@ -6,14 +6,14 @@ import 'package:start_app/business_logic/services/fight/normal_fight_service.dar
 import 'package:start_app/models/fight/fight_settings_model.dart';
 
 abstract class IFightServiceFactory {
-  IFightService create(Difficulty difficulty);
+  IFightService create(FightSettingsModel settings);
 }
 
 class FightServiceFactory implements IFightServiceFactory {
-  IFightService create(Difficulty difficulty) {
-    switch (difficulty) {
+  IFightService create(FightSettingsModel settings) {
+    switch (settings.difficulty) {
       case Difficulty.easy:
-        return EasyFightService();
+        return EasyFightService(settings.playerPokemon, settings.cpuPokemon);
       case Difficulty.normal:
         return NormalFightService();
       case Difficulty.hard:
