@@ -27,6 +27,7 @@ dependencies:
   rxdart: 0.23.1
   fake_async: 1.1.0
   clock: 1.0.1
+  dio: 3.0.9
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,6 +60,7 @@ flutter:
   - assets/pokemon_sprites/kadabra.png
   - assets/pokemon_sprites/starmie.png
   - assets/pokemon_logo.png
+  - assets/startup_image.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

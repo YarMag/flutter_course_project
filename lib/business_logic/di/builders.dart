@@ -9,3 +9,5 @@ typedef SingleFightScreenBuilder(FightSettingsModel settings);
 typedef HighscoresScreenBuilder();
 
 typedef PokedexScreenBuilder();
+
+typedef StartupScreenBuilder();

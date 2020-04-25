@@ -10,10 +10,16 @@ import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc.dart';
 import 'package:start_app/business_logic/blocs/main_menu/main_menu_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
+import 'package:start_app/business_logic/blocs/startup/startup_bloc.dart';
+import 'package:start_app/business_logic/blocs/startup/startup_bloc_interface.dart';
 import 'package:start_app/business_logic/di/builders.dart';
 import 'package:start_app/business_logic/di/injector_assembly.dart';
 import 'package:start_app/business_logic/repositories/pokemon/dummy_pokemon_repository.dart';
+import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
+import 'package:start_app/business_logic/services/network/common/dio_network_service.dart';
+import 'package:start_app/business_logic/services/network/common/network_service_interface.dart';
+import 'package:start_app/business_logic/services/network/pokemon/pokemon_network_service.dart';
 import 'package:start_app/models/fight/fight_settings_model.dart';
 import 'package:start_app/ui/screens/highscores_screen.dart';
 import 'package:start_app/ui/screens/main_screen.dart';
@@ -21,10 +27,11 @@ import 'package:start_app/ui/screens/new_fight_screen.dart';
 import 'package:start_app/ui/screens/pokedex_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
 import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
+import 'package:start_app/ui/screens/startup_screen.dart';
 
 class ApplicationAssembly {
   static StatefulWidget getCompositionRoot() {
-    return _mainScreenBuilder();
+    return _startupScreenBuilder();
   }
 
   static StatefulWidget getDICompositionRoot() {
@@ -33,23 +40,32 @@ class ApplicationAssembly {
 
   //#region Services
   static IFightServiceFactory _fightServiceFactory = FightServiceFactory();
-  static IPokemonRepository _pokemonRepository = DummyPokemonRepository();
+  static IPokemonRepository _pokemonRepository =
+      PokemonRepository(pokemonNetworkService: _pokemonNetworkService());
+
+  static INetworkService _networkService() =>
+      DioNetworkService(baseURL: "https://pokeapi.co/api/v2/");
+  static PokemonNetworkService _pokemonNetworkService() =>
+      PokemonNetworkService(networkService: _networkService());
   //#endregion
 
   //#region Blocs
+  static IStartupBloc _startupBloc() =>
+      StartupBloc(pokemonRepository: _pokemonRepository);
   static IMainMenuBloc _mainMenuBloc() => MainMenuBloc();
   static INewFightBloc _newFightBloc() =>
       NewFightBloc(pokemonRepository: _pokemonRepository);
   static ISingleFightBloc _singleFightBloc(FightSettingsModel settings) =>
-      SingleFightBloc(
-          service: _fightServiceFactory.create(settings));
+      SingleFightBloc(service: _fightServiceFactory.create(settings));
   static IHighscoresBloc _highscoreBloc() => HighscoresBloc();
-  static IPokedexBloc _pokedexBloc() => PokedexBloc(repository: _pokemonRepository);
+  static IPokedexBloc _pokedexBloc() =>
+      PokedexBloc(repository: _pokemonRepository);
   //#endregion
 
   //#region ScreenBuilders
 
   static MainScreenBuilder _mainScreenBuilder = () {
+    _pokemonNetworkService().loadAllPokemons();
     return BlocProvider<IMainMenuBloc>(
       child: MainScreen(
         newFightScreenBuilder: _newFightScreenBuilder,
@@ -57,6 +73,13 @@ class ApplicationAssembly {
         pokedexScreenBuilder: _pokedexScreenBuilder,
       ),
       bloc: _mainMenuBloc(),
+    );
+  };
+
+  static StartupScreenBuilder _startupScreenBuilder = () {
+    return BlocProvider<IStartupBloc>(
+      child: StartupScreen(mainScreenBuilder: _mainScreenBuilder),
+      bloc: _startupBloc(),
     );
   };
 
@@ -85,9 +108,7 @@ class ApplicationAssembly {
 
   static PokedexScreenBuilder _pokedexScreenBuilder = () {
     return BlocProvider<IPokedexBloc>(
-      child: PokedexScreen(),
-      bloc: _pokedexBloc()
-    );
+        child: PokedexScreen(), bloc: _pokedexBloc());
   };
 
   //#endregion
