@@ -18,7 +18,7 @@ class BuffAbilityModel extends AbilityModel {
             energyCost: energyCost);
 
   AbilityType getType() {
-    return AbilityType.buff;
+    return AbilityType.selfApplied;
   }
 
   void applyTo(IAbilityAffectable target) {

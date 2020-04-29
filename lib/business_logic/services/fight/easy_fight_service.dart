@@ -15,41 +15,37 @@ class EasyFightService implements IFightService {
     PokemonFightModel secondFightPokemon =
         PokemonFightModel(pokemon: second, hp: 80, energy: 80);
     _fightState = FightStateModel(
-        firstPokemon: firstFightPokemon,
-        secondPokemon: secondFightPokemon,
+        playerPokemon: firstFightPokemon,
+        cpuPokemon: secondFightPokemon,
         turnOwner: TurnOwner.player);
   }
 
   void applyPlayerAbility(AbilityModel ability) {
     switch (ability.getType()) {
-      case AbilityType.buff:
-        ability.applyTo(_fightState.firstPokemon);
+      case AbilityType.selfApplied:
+        ability.applyTo(_fightState.playerPokemon);
         break;
-      case AbilityType.debuff:
-      case AbilityType.mentalAttack:
-      case AbilityType.physicalAttack:
-        ability.applyTo(_fightState.secondPokemon);
+      case AbilityType.otherApplied:
+        ability.applyTo(_fightState.cpuPokemon);
         break;
       default:
         assert(false, "Should never reach there");
     }
-    _fightState.firstPokemon.didUseAbility(ability);
+    _fightState.playerPokemon.didUseAbility(ability);
   }
 
   void applyCpuAbility(AbilityModel ability) {
     switch (ability.getType()) {
-      case AbilityType.buff:
-        ability.applyTo(_fightState.secondPokemon);
+      case AbilityType.selfApplied:
+        ability.applyTo(_fightState.cpuPokemon);
         break;
-      case AbilityType.debuff:
-      case AbilityType.mentalAttack:
-      case AbilityType.physicalAttack:
-        ability.applyTo(_fightState.firstPokemon);
+      case AbilityType.otherApplied:
+        ability.applyTo(_fightState.playerPokemon);
         break;
       default:
         assert(false, "Should never reach there");
     }
-    _fightState.secondPokemon.didUseAbility(ability);
+    _fightState.cpuPokemon.didUseAbility(ability);
   }
 
   AbilityModel simulateCpuAbilitySelection() {

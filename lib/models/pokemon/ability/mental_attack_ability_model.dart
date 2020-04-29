@@ -16,7 +16,7 @@ class MentalAttackAbilityModel extends AbilityModel {
             energyCost: energyCost);
 
   AbilityType getType() {
-    return AbilityType.mentalAttack;
+    return AbilityType.otherApplied;
   }
 
   void applyTo(IAbilityAffectable target) {

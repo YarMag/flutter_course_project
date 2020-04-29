@@ -18,7 +18,7 @@ class DebuffAbilityModel extends AbilityModel {
             energyCost: energyCost);
 
   AbilityType getType() {
-    return AbilityType.debuff;
+    return AbilityType.otherApplied;
   }
 
   void applyTo(IAbilityAffectable target) {

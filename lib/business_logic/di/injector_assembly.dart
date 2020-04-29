@@ -28,6 +28,7 @@ import 'package:start_app/ui/screens/main_screen.dart';
 import 'package:start_app/ui/screens/new_fight_screen.dart';
 import 'package:start_app/ui/screens/pokedex_screen.dart';
 import 'package:start_app/ui/screens/single_fight_screen.dart';
+import 'package:start_app/ui/screens/startup_screen.dart';
 
 class Injection {
   static final Injector injector = Injector.getInjector();
@@ -35,14 +36,11 @@ class Injection {
   static void initialize() {
     if (Platform.isIOS) {
       injector.map<WidgetFactory>((i) => CupertinoWidgetsFactory());
-    }
-    else if (Platform.isAndroid) {
+    } else if (Platform.isAndroid) {
       injector.map<WidgetFactory>((i) => MaterialWidgetsFactory());
-    }
-    else {
+    } else {
       assert(false, "Should never reach there");
     }
-
     injector.map<INetworkService>((i) => DioNetworkService());
 
     // services
@@ -61,8 +59,10 @@ class Injection {
       return SingleFightBloc(
           service: i.get<IFightServiceFactory>().create(settings));
     });
-    injector.map<IPokedexBloc>((i) => PokedexBloc(repository: i.get<IPokemonRepository>()));
-    injector.map<IStartupBloc>((i) => StartupBloc(pokemonRepository: i.get<IPokemonRepository>()));
+    injector.map<IPokedexBloc>(
+        (i) => PokedexBloc(repository: i.get<IPokemonRepository>()));
+    injector.map<IStartupBloc>(
+        (i) => StartupBloc(pokemonRepository: i.get<IPokemonRepository>()));
     injector.map<IHighscoresBloc>((i) => HighscoresBloc());
 
     // screen builders
@@ -91,32 +91,32 @@ class Injection {
 
     injector.map<PokedexScreenBuilder>(
         (i) => () {
-          return BlocProvider<IPokedexBloc>(
-            child: PokedexScreen(),
-            bloc: i.get<IPokedexBloc>(),
-          );
-        },
-      isSingleton: true,
-      key: "pokedexScreen"
-    );
+              return BlocProvider<IPokedexBloc>(
+                child: PokedexScreen(),
+                bloc: i.get<IPokedexBloc>(),
+              );
+            },
+        isSingleton: true,
+        key: "pokedexScreen");
 
     injector.map<HighscoresScreenBuilder>(
         (i) => () {
-          return BlocProvider<IHighscoresBloc>(
-            child: HighscoresScreen(),
-            bloc: i.get<IHighscoresBloc>(),
-          );
-        },
-      isSingleton: true,
-      key: "highscoresScreen"
-    );
+              return BlocProvider<IHighscoresBloc>(
+                child: HighscoresScreen(),
+                bloc: i.get<IHighscoresBloc>(),
+              );
+            },
+        isSingleton: true,
+        key: "highscoresScreen");
 
     injector.map<MainScreenBuilder>(
         (i) => () {
               return BlocProvider<IMainMenuBloc>(
                 child: MainScreen(
-                  pokedexScreenBuilder: i.get<PokedexScreenBuilder>(key: "pokedexScreen"),
-                  highscoresScreenBuilder: i.get<HighscoresScreenBuilder>(key: "highscoresScreen"),
+                  pokedexScreenBuilder:
+                      i.get<PokedexScreenBuilder>(key: "pokedexScreen"),
+                  highscoresScreenBuilder:
+                      i.get<HighscoresScreenBuilder>(key: "highscoresScreen"),
                   newFightScreenBuilder:
                       i.get<NewFightScreenBuilder>(key: "newFightScreen"),
                 ),
@@ -125,5 +125,16 @@ class Injection {
             },
         isSingleton: true,
         key: "mainScreen");
+
+    injector.map<StartupScreenBuilder>(
+            (i) => () {
+          return BlocProvider(
+            child: StartupScreen(
+                mainScreenBuilder: i.get<MainScreenBuilder>(key: "mainScreen")),
+            bloc: i.get<IStartupBloc>(),
+          );
+        },
+        isSingleton: true,
+        key: "startupScreen");
   }
 }

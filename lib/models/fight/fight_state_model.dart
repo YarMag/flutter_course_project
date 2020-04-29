@@ -5,12 +5,12 @@ import 'package:start_app/models/fight/pokemon_fight_model.dart';
 enum TurnOwner { player, cpu }
 
 class FightStateModel {
-  final PokemonFightModel firstPokemon;
-  final PokemonFightModel secondPokemon;
+  final PokemonFightModel playerPokemon;
+  final PokemonFightModel cpuPokemon;
   final TurnOwner turnOwner;
 
   FightStateModel(
-      {@required this.firstPokemon,
-      @required this.secondPokemon,
+      {@required this.playerPokemon,
+      @required this.cpuPokemon,
       @required this.turnOwner});
 }

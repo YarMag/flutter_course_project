@@ -16,7 +16,7 @@ class PhysicalAttackAbilityModel extends AbilityModel {
             energyCost: energyCost);
 
   AbilityType getType() {
-    return AbilityType.physicalAttack;
+    return AbilityType.otherApplied;
   }
 
   void applyTo(IAbilityAffectable target) {
