@@ -12,8 +12,8 @@ import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/startup/startup_bloc.dart';
 import 'package:start_app/business_logic/blocs/startup/startup_bloc_interface.dart';
-import 'package:start_app/business_logic/di/builders.dart';
-import 'package:start_app/business_logic/di/injector_assembly.dart';
+import 'package:start_app/di/builders.dart';
+import 'package:start_app/di/injector_assembly.dart';
 import 'package:start_app/business_logic/repositories/pokemon/dummy_pokemon_repository.dart';
 import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';
@@ -35,13 +35,14 @@ class ApplicationAssembly {
   }
 
   static StatefulWidget getDICompositionRoot() {
-    return (Injection.injector.get<StartupScreenBuilder>(key: "startupScreen"))();
+    return (Injection.injector
+        .get<StartupScreenBuilder>(key: "startupScreen"))();
   }
 
   //#region Services
   static IFightServiceFactory _fightServiceFactory = FightServiceFactory();
   static IPokemonRepository _pokemonRepository =
-      PokemonRepository(pokemonNetworkService: _pokemonNetworkService());
+      DummyPokemonRepository();
 
   static INetworkService _networkService() =>
       DioNetworkService(baseURL: "https://pokeapi.co/api/v2/");

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/startup/startup_bloc_interface.dart';
-import 'package:start_app/business_logic/di/builders.dart';
+import 'package:start_app/di/builders.dart';
 import 'package:start_app/ui/constants/images.dart';
 
 class StartupScreen extends StatefulWidget {

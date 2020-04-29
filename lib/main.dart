@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:start_app/business_logic/di/application_assembly.dart';
-import 'package:start_app/business_logic/di/injector_assembly.dart';
+import 'package:start_app/di/application_assembly.dart';
+import 'package:start_app/di/injector_assembly.dart';
 
 void main() {
   Injection.initialize();

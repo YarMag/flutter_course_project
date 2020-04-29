@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:start_app/business_logic/blocs/common/bloc_provider.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
-import 'package:start_app/business_logic/di/builders.dart';
+import 'package:start_app/di/builders.dart';
 import 'package:start_app/models/fight/fight_settings_model.dart';
 import 'package:start_app/models/pokemon/pokemon_model.dart';
 import 'package:start_app/ui/widgets/new_fight/difficulty_selection_control.dart';

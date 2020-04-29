@@ -14,7 +14,7 @@ import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc.dart';
 import 'package:start_app/business_logic/blocs/new_fight/new_fight_bloc_interface.dart';
 import 'package:start_app/business_logic/blocs/startup/startup_bloc.dart';
 import 'package:start_app/business_logic/blocs/startup/startup_bloc_interface.dart';
-import 'package:start_app/business_logic/di/builders.dart';
+import 'package:start_app/di/builders.dart';
 import 'package:start_app/business_logic/repositories/pokemon/dummy_pokemon_repository.dart';
 import 'package:start_app/business_logic/repositories/pokemon/pokemon_repository_interface.dart';
 import 'package:start_app/business_logic/services/fight/fight_service_factory.dart';

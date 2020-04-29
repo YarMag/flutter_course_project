@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:start_app/business_logic/di/builders.dart';
+import 'package:start_app/di/builders.dart';
 import 'package:start_app/ui/constants/pokemon_images.dart';
 
 class MainScreen extends StatelessWidget {
